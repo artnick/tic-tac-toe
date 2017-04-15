@@ -1,30 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import LinkToGame from './LinkToGame';
 
 const Lobby = ({ link }) => (
-  <div className='lobby jumbotron'>
-    <h1>Tic-tac-toe</h1>
-    { !link ?
-      <span>Creating game...</span> :
-      <div className='form-inline'>
-        <span>
-          Share link below with your friend to allow connect to game. 
-          You will be connected to game automatically when your friend have entered to game
-        </span><br/>
-        <input 
-          id='linkField'
-          className='form-control'
-          type='text'
-          readOnly='true'
-          value={link}
-          onFocus={(event) => {
-            event.target.select();
-            document.execCommand('copy');
-          }}
-        />
-        <label htmlFor='linkField' className='copy-btn'>copy</label>
-      </div>
-    }
+  <div className="panel panel-default lobby">
+    <div className="panel-body">
+      <h1>Tic-tac-toe</h1>
+      {!link ?
+        <span>Creating game...</span> :
+        <div>
+          <span>
+            Share link below with your friend to allow connect to game.<br/>
+            You will be connected to game automatically when your friend have entered to game.
+          </span>
+          <LinkToGame link={link}/>
+        </div>
+      }
+    </div>
   </div>
 );
 
