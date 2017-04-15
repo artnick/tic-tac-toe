@@ -4,6 +4,8 @@ import Lobby from '../components/Lobby';
 import { createGame } from '../actions/lobbyActions';
 import PropTypes from 'prop-types';
 
+const URL = 'http://localhost:8080/game/';
+
 class LobbyContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -14,20 +16,27 @@ class LobbyContainer extends React.Component {
     //this.props.history.push('/game/');
   }
 
+  componentDidUpdate() {
+    if(this.props.canJoinGame)
+      this.props.history.push('/game/'+ this.props.gameId);
+  }
+
   render() {
-    return <Lobby link={this.props.link} />;
+    return <Lobby link={URL + this.props.gameId} />;
   }
 }
 
 LobbyContainer.propTypes = {
   dispatch: PropTypes.func,
-  link: PropTypes.string,
+  gameId: PropTypes.string,
+  canJoinGame: PropTypes.bool,
   history: PropTypes.object,
 };
 
 const mapStateToProps = (state) => {
   return {
-    link: state.lobby.link,
+    gameId: state.lobby.gameId,
+    canJoinGame: state.lobby.canJoinGame,
   };
 };
 

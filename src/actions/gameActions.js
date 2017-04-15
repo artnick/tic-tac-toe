@@ -7,9 +7,10 @@ const connectToGameRequest = () => {
   };
 };
 
-const connectToGameSucces = () => {
+const connectToGameSucces = ({ field, players, whoseTurn}) => {
   return {
     type: CONNECT_GAME_SUCCESS,
+    field,
   };
 };
 
@@ -19,9 +20,9 @@ export function connectToGame(gameId) {
 
     socket.emit('connect to game', gameId);
 
-    socket.on('connected to game', function(data) {
+    socket.on('connected to game', function(game) {
       dispatch(connectToGameSucces());
-      console.log('Connected to game:', data);
+      console.log('Connected to game:', game);
     });
   };
 }

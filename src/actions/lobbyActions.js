@@ -1,7 +1,6 @@
 export const CREATE_GAME_REQUEST = 'CREATE_GAME_REQUEST';
 export const CREATE_GAME_SUCCESS = 'CREATE_GAME_SUCCESS';
-
-const URL = 'http://localhost:8080/game/';
+export const JOIN_GAME = 'JOIN_GAME';
 
 const createGameRequest = () => {
   return {
@@ -12,9 +11,16 @@ const createGameRequest = () => {
 const createGameSucces = (gameId) => {
   return {
     type: CREATE_GAME_SUCCESS,
-    url: URL + gameId,
+    gameId,
   };
 };
+
+const joinGame = () => {
+  return {
+    type: JOIN_GAME,
+  };
+};
+
 
 export function createGame() {
   return (dispatch, getState, socket) => {
@@ -23,6 +29,10 @@ export function createGame() {
     socket.emit('create game');
     socket.on('game created', function(gameId) {
       dispatch(createGameSucces(gameId));
+    });
+
+    socket.on('connected to game', function() {
+      dispatch(joinGame());
     });
   };
 }
