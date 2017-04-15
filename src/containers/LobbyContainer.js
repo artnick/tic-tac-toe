@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Lobby from '../components/Lobby';
-import { createGame } from '../actions';
+import { createGame } from '../actions/lobbyActions';
 import PropTypes from 'prop-types';
 
 class LobbyContainer extends React.Component {

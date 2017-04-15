@@ -1,6 +1,6 @@
 import { 
-  CREATE_GAME_REQUEST, 
-} from '../actions/';
+  CONNECT_GAME_SUCCESS, 
+} from '../actions/gameActions';
 
 const initialState = { 
   field: [], 
@@ -9,7 +9,7 @@ const initialState = {
 
 const game = (state = initialState, action) => {
   switch (action.type) {
-    case CREATE_GAME_REQUEST:
+    case CONNECT_GAME_SUCCESS:
       return state;
     default:
       return state;

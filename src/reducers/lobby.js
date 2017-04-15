@@ -1,6 +1,6 @@
 import { 
   CREATE_GAME_SUCCESS, 
-} from '../actions/';
+} from '../actions/lobbyActions';
 
 const initialState = { 
   link: '',
