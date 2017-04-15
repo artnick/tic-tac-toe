@@ -11,6 +11,7 @@ class LobbyContainer extends React.Component {
 
   componentDidMount() {
     this.props.dispatch(createGame());
+    //this.props.history.push('/game/');
   }
 
   render() {
@@ -21,6 +22,7 @@ class LobbyContainer extends React.Component {
 LobbyContainer.propTypes = {
   dispatch: PropTypes.func,
   link: PropTypes.string,
+  history: PropTypes.object,
 };
 
 const mapStateToProps = (state) => {

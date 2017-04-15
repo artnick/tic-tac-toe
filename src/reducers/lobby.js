@@ -1,5 +1,5 @@
 import { 
-  CREATE_GAME_REQUEST, 
+  CREATE_GAME_SUCCESS, 
 } from '../actions/';
 
 const initialState = { 
@@ -8,8 +8,11 @@ const initialState = {
 
 const lobby = (state = initialState, action) => {
   switch (action.type) {
-    case CREATE_GAME_REQUEST:
-      return state;
+    case CREATE_GAME_SUCCESS:
+      return {
+        ...state,
+        link: action.url,
+      };
     default:
       return state;
   }
