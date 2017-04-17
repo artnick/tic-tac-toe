@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { connectToGame } from '../actions/gameActions';
+import Game from '../components/Game';
 
 class GameContainer extends React.Component {
   constructor(props) {
@@ -14,19 +15,21 @@ class GameContainer extends React.Component {
   }
 
   render() {
-    return <div>Game</div>;
+    return <Game {...this.props}/>;
   }
 }
 
 GameContainer.propTypes = {
   dispatch: PropTypes.func,
-  link: PropTypes.string,
   match: PropTypes.object,
 };
 
 const mapStateToProps = (state) => {
   return {
     field: state.game.field,
+    info: state.game.info,
+    canMove: state.game.canMove,
+    player: state.game.player,
   };
 };
 

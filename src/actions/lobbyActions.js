@@ -21,7 +21,6 @@ const joinGame = () => {
   };
 };
 
-
 export function createGame() {
   return (dispatch, getState, socket) => {
     dispatch(createGameRequest());
@@ -31,7 +30,7 @@ export function createGame() {
       dispatch(createGameSucces(gameId));
     });
 
-    socket.on('connected to game', function() {
+    socket.on('second player connected', function() {
       dispatch(joinGame());
     });
   };
