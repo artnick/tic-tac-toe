@@ -1,17 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import EmptyCell from './EmptyCell';
 
 const Cell = ({ type, onCLick }) => {
   switch (type) {
     case 2:
-      return <td>X</td>;
+      return <div className='cell'>X</div>;
     case 1:
-      return <td>O</td>;
+      return <div className='cell'>O</div>;
     case 0:
-      return <EmptyCell/>;
+      return <div className='cell' onClick={onCLick}></div>;
     default:
-      return <EmptyCell/>;
+      return <div className='cell' onClick={onCLick}></div>;
   }
 };
 

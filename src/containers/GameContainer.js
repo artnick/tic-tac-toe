@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { connectToGame } from '../actions/gameActions';
+import { connectToGame, move } from '../actions/gameActions';
 import Game from '../components/Game';
 
 class GameContainer extends React.Component {
@@ -10,7 +10,7 @@ class GameContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(connectToGame(this.props.match.params.id));
+    this.props.connect(this.props.match.params.id);
     //this.props.history.push('/game/');
   }
 
@@ -20,7 +20,7 @@ class GameContainer extends React.Component {
 }
 
 GameContainer.propTypes = {
-  dispatch: PropTypes.func,
+  connect: PropTypes.func,
   match: PropTypes.object,
 };
 
@@ -33,4 +33,15 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(GameContainer);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    move: (cell) => {
+      dispatch(move(cell));
+    },
+    connect: (gameId) => {
+      dispatch(connectToGame(gameId));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(GameContainer);
