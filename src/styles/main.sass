@@ -3,6 +3,13 @@ $container-lg: 768px
 $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import 'bootstrap-custom'
 
+%sign
+  fill: none
+  stroke-width: 7
+  stroke-dasharray: 1000
+  stroke-dashoffset: 1000
+  animation: dash 2s linear forwards
+
 *
   box-sizing: border-box
 
@@ -38,19 +45,14 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
   &:nth-of-type(3n-2)
     border-left: none
   .circle
-    fill: none
+    @extend %sign
     stroke: #0C0C9D
-    stroke-width: 7
-    stroke-dasharray: 1000
-    stroke-dashoffset: 1000
-    animation: dash 2s linear forwards
   .cross
-    fill: none
+    @extend %sign
     stroke: #D01818
-    stroke-width: 7
-    stroke-dasharray: 1000
-    stroke-dashoffset: 1000
-    animation: dash 2s linear forwards
+  .delay-line
+    @extend %sign
+    stroke-dashoffset: 1100
 
 .line
   position: absolute

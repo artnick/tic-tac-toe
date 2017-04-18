@@ -74,7 +74,6 @@ export function connectToGame(gameId) {
 
     socket.on('connected to game', function(game) {
       dispatch(connectToGameSucces(game));
-      console.log('Connected to game:', game);
     });
 
     socket.on('failed connect to game', function(message) {
