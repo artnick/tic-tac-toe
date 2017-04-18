@@ -1,8 +1,9 @@
 export const CONNECT_GAME_REQUEST = 'CONNECT_GAME_REQUEST';
 export const CONNECT_GAME_SUCCESS = 'CONNECT_GAME_SUCCESS';
 export const CONNECT_GAME_FAILURE = 'CONNECT_GAME_FAILURE';
-
+export const RESTART_GAME = 'RESTART_GAME';
 export const OPPONENT_DISCONNECTED = 'OPPONENT_DISCONNECTED';
+
 export const MOVED = 'MOVED';
 export const YOUR_WIN = 'YOUR_WIN';
 export const YOUR_LOST = 'YOUR_LOST';
@@ -20,11 +21,10 @@ const connectToGameRequest = () => {
   };
 };
 
-const connectToGameSucces = ({ field, player, canMove }) => {
+const connectToGameSucces = ({ field, player }) => {
   return {
     type: CONNECT_GAME_SUCCESS,
-    player,
-    canMove, 
+    player, 
     field,
   };
 };
@@ -33,6 +33,12 @@ const connectToGameFailure = (message) => {
   return {
     type: CONNECT_GAME_FAILURE,
     message,
+  };
+};
+
+const restartGame = () => {
+  return {
+    type: RESTART_GAME,
   };
 };
 
@@ -51,14 +57,12 @@ const youWin = (line) => {
   };
 };
 
-
 const youLost = (line) => {
   return {
     type: YOUR_LOST,
     line,
   };
 };
-
 
 const draw = () => {
   return {
@@ -96,6 +100,10 @@ export function connectToGame(gameId) {
       else
         dispatch(youLost(result.line));
     });
+
+    socket.on('restarting', function() {
+      dispatch(restartGame());
+    });
   };
 }
 
@@ -104,5 +112,11 @@ export function move(cell) {
     if(getState().game.canMove) {
       socket.emit('move', cell);
     }
+  };
+}
+
+export function restartRequest() {
+  return (dispatch, getState, socket) => {
+    socket.emit('restart');
   };
 }

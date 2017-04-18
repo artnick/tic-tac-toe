@@ -1,8 +1,9 @@
 import { 
   CONNECT_GAME_SUCCESS,
   CONNECT_GAME_FAILURE,
-  MOVED,
+  RESTART_GAME,
   OPPONENT_DISCONNECTED,
+  MOVED,
   YOUR_WIN,
   YOUR_LOST,
   DRAW,
@@ -38,13 +39,20 @@ const game = (state = initialState, action) => {
         ...state,
         field: action.field,
         player: action.player,
-        canMove: action.canMove,
-        info: action.canMove ? TEXT_CAN_MOVE : TEXT_CAN_NOT_MOVE,
+        canMove: action.player == 2,
+        info: action.player == 2 ? TEXT_CAN_MOVE : TEXT_CAN_NOT_MOVE,
       };
     case CONNECT_GAME_FAILURE:
       return {
         ...state,
         info: action.message,
+      };
+    case RESTART_GAME:
+      return {
+        ...state,
+        field: new Array(9).fill(0),
+        canMove: state.player == 2,
+        info: state.player == 2 ? TEXT_CAN_MOVE : TEXT_CAN_NOT_MOVE,
       };
     case OPPONENT_DISCONNECTED:
       return {

@@ -13,7 +13,6 @@ class LobbyContainer extends React.Component {
 
   componentDidMount() {
     this.props.dispatch(createGame());
-    //this.props.history.push('/game/');
   }
 
   componentDidUpdate() {
