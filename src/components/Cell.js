@@ -5,11 +5,11 @@ const Cell = ({ type, onCLick }) => {
   switch (type) {
     case 2:
       return <div className='cell'>
-      <svg className="cross" role="img" viewBox="0 0 128 128">
-        <path d="M16,16L112,112" stroke="#000000"/>
-        <path className="odd" d="M112,16L16,112"/>
-      </svg>
-    </div>;
+        <svg className="cross" role="img" viewBox="0 0 128 128">
+          <path d="M16,16L112,112" stroke="#000000"/>
+          <path className="odd" d="M112,16L16,112"/>
+        </svg>
+      </div>;
     case 1:
       return <div className='cell'>
         <svg className="circle" role="img" viewBox="0 0 128 128" >

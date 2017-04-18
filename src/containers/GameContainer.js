@@ -29,7 +29,7 @@ const mapStateToProps = (state) => {
     field: state.game.field,
     info: state.game.info,
     canMove: state.game.canMove,
-    player: state.game.player,
+    line: state.game.line,
   };
 };
 

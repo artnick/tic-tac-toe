@@ -1,6 +1,7 @@
 import { 
   CONNECT_GAME_SUCCESS,
-  MOVE_IS_MADE,
+  MOVED,
+  OPPONENT_DISCONNECTED,
   YOUR_WIN,
   YOUR_LOST,
   DRAW,
@@ -21,19 +22,12 @@ function updateCell(array, action) {
   });
 }
 
-// function opponent(player) {
-//   if(player == 2)
-//     return 1;
-//   else 
-//     return 2;
-// }
-
-
 const initialState = { 
   field: [], 
   player: 0,
   canMove: false,
   info: '',
+  line: -1,
 };
 
 const game = (state = initialState, action) => {
@@ -46,7 +40,12 @@ const game = (state = initialState, action) => {
         canMove: action.canMove,
         info: action.canMove ? TEXT_CAN_MOVE : TEXT_CAN_NOT_MOVE,
       };
-    case MOVE_IS_MADE:
+    case OPPONENT_DISCONNECTED:
+      return {
+        ...state,
+        info: 'Your opponent have left game',
+      };
+    case MOVED:
       return {
         ...state,
         field: updateCell(state.field, action),
@@ -58,12 +57,14 @@ const game = (state = initialState, action) => {
         ...state,
         canMove: false,
         info: TEXT_WIN,
+        line: action.line,
       };
     case YOUR_LOST:
       return {
         ...state,
         canMove: false,
         info: TEXT_LOST,
+        line: action.line,
       };
     case DRAW:
       return {

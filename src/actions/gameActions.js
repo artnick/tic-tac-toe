@@ -1,10 +1,17 @@
 export const CONNECT_GAME_REQUEST = 'CONNECT_GAME_REQUEST';
 export const CONNECT_GAME_SUCCESS = 'CONNECT_GAME_SUCCESS';
 
-export const MOVE_IS_MADE = 'MOVE_IS_MADE';
+export const OPPONENT_DISCONNECTED = 'OPPONENT_DISCONNECTED';
+export const MOVED = 'MOVED';
 export const YOUR_WIN = 'YOUR_WIN';
 export const YOUR_LOST = 'YOUR_LOST';
 export const DRAW = 'DRAW';
+
+const opponentDisconnected = () => {
+  return {
+    type: OPPONENT_DISCONNECTED,
+  };
+};
 
 const connectToGameRequest = () => {
   return {
@@ -21,9 +28,9 @@ const connectToGameSucces = ({ field, player, canMove }) => {
   };
 };
 
-const moveIsMade = (index, sign) => {
+const moved = (index, sign) => {
   return {
-    type: MOVE_IS_MADE,
+    type: MOVED,
     index,
     sign,
   };
@@ -67,7 +74,11 @@ export function connectToGame(gameId) {
     });
 
     socket.on('moved', function(cell, sign) {
-      dispatch(moveIsMade(cell, sign));
+      dispatch(moved(cell, sign));
+    });
+
+    socket.on('opponent disconnected', function() {
+      dispatch(opponentDisconnected());
     });
 
     socket.on('game over', function(result) {

@@ -26,11 +26,12 @@ $small-spinner-size: 28px
 
 .field
   @extend .container
+  position: relative
   width: 300px
 
 .cell
   @extend .col-xs-4
-  height: 95px
+  height: 100px
   padding: 8px
   border: 1px solid #000
   path
@@ -40,6 +41,20 @@ $small-spinner-size: 28px
     stroke-dasharray: 1000
     stroke-dashoffset: 1000
     animation: dash 2s linear forwards
+
+.line
+  position: absolute
+  left: 0
+  top: 0
+  right: 0
+  z-index: 1000
+  path
+    stroke: #000
+    stroke-width: 4
+    stroke-dasharray: 1000
+    stroke-dashoffset: 1000
+    animation: dash 2s linear forwards
+
 
 .spinner
   display: inline-block
