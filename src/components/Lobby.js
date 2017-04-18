@@ -10,8 +10,9 @@ const Lobby = ({ link }) => (
         <span>Creating game...</span> :
         <div>
           <span>
-            Share link below with your friend to allow connect to game.<br/>
-            You will be connected to game automatically when your friend have entered to game.
+            The game is created.<br/>
+            Share a link below with your friend so that he can join the game.<br/>
+            Once he enters the game you will automatically join.
           </span>
           <LinkToGame link={link}/>
         </div>
