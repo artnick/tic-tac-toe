@@ -1,5 +1,6 @@
 import { 
   CONNECT_GAME_SUCCESS,
+  CONNECT_GAME_FAILURE,
   MOVED,
   OPPONENT_DISCONNECTED,
   YOUR_WIN,
@@ -39,6 +40,11 @@ const game = (state = initialState, action) => {
         player: action.player,
         canMove: action.canMove,
         info: action.canMove ? TEXT_CAN_MOVE : TEXT_CAN_NOT_MOVE,
+      };
+    case CONNECT_GAME_FAILURE:
+      return {
+        ...state,
+        info: action.message,
       };
     case OPPONENT_DISCONNECTED:
       return {

@@ -4,18 +4,22 @@ import PropTypes from 'prop-types';
 const Cell = ({ type, onCLick }) => {
   switch (type) {
     case 2:
-      return <div className='cell'>
-        <svg className="cross" role="img" viewBox="0 0 128 128">
-          <path d="M16,16L112,112" stroke="#000000"/>
-          <path className="odd" d="M112,16L16,112"/>
-        </svg>
-      </div>;
+      return (
+        <div className='cell'>
+          <svg className="cross" role="img" viewBox="0 0 100 100">
+            <path d="M25,25L75,75"/>
+            <path d="M75,25L25,75" className="delay-line" />
+          </svg>
+        </div>
+      );
     case 1:
-      return <div className='cell'>
-        <svg className="circle" role="img" viewBox="0 0 128 128" >
-          <path d="M64,16A48,48 0 1,0 64,112A48,48 0 1,0 64,16"></path>
-        </svg>
-      </div>;
+      return (
+        <div className='cell'>
+          <svg className="circle" role="img" viewBox="0 0 100 100" >
+            <path d="M50,50m-25,0a25,25 0 1,0 50,0a25,25 0 1,0 -50,0"></path>
+          </svg>
+        </div>
+      );
     case 0:
     default:
       return <div className='cell' onClick={onCLick}></div>;

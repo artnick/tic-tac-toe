@@ -1,5 +1,6 @@
 export const CONNECT_GAME_REQUEST = 'CONNECT_GAME_REQUEST';
 export const CONNECT_GAME_SUCCESS = 'CONNECT_GAME_SUCCESS';
+export const CONNECT_GAME_FAILURE = 'CONNECT_GAME_FAILURE';
 
 export const OPPONENT_DISCONNECTED = 'OPPONENT_DISCONNECTED';
 export const MOVED = 'MOVED';
@@ -25,6 +26,13 @@ const connectToGameSucces = ({ field, player, canMove }) => {
     player,
     canMove, 
     field,
+  };
+};
+
+const connectToGameFailure = (message) => {
+  return {
+    type: CONNECT_GAME_FAILURE,
+    message,
   };
 };
 
@@ -69,8 +77,8 @@ export function connectToGame(gameId) {
       console.log('Connected to game:', game);
     });
 
-    socket.on('failed to connect to game', function(msg) {
-      console.log('Failed to connect to game:', msg);
+    socket.on('failed connect to game', function(message) {
+      dispatch(connectToGameFailure(message));
     });
 
     socket.on('moved', function(cell, sign) {

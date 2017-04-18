@@ -27,17 +27,30 @@ $small-spinner-size: 28px
 .field
   @extend .container
   position: relative
+  overflow: hidden
   width: 300px
+  .row
+    margin-top: -3px
 
 .cell
   @extend .col-xs-4
   height: 100px
-  padding: 8px
-  border: 1px solid #000
-  path
+  padding: 0
+  border-top: 3px solid #000
+  border-left: 3px solid #000
+  &:nth-of-type(3n-2)
+    border-left: none
+  .circle
     fill: none
-    stroke: #000
-    stroke-width: 4
+    stroke: #0C0C9D
+    stroke-width: 7
+    stroke-dasharray: 1000
+    stroke-dashoffset: 1000
+    animation: dash 2s linear forwards
+  .cross
+    fill: none
+    stroke: #D01818
+    stroke-width: 7
     stroke-dasharray: 1000
     stroke-dashoffset: 1000
     animation: dash 2s linear forwards
@@ -50,7 +63,7 @@ $small-spinner-size: 28px
   z-index: 1000
   path
     stroke: #000
-    stroke-width: 4
+    stroke-width: 8
     stroke-dasharray: 1000
     stroke-dashoffset: 1000
     animation: dash 2s linear forwards
