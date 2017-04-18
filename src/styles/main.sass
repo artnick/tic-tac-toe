@@ -1,10 +1,7 @@
 $container-md: 768px
 $container-lg: 768px
 $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
-
 @import 'bootstrap-custom'
-
-$small-spinner-size: 28px
 
 *
   box-sizing: border-box
@@ -67,17 +64,6 @@ $small-spinner-size: 28px
     stroke-dasharray: 1000
     stroke-dashoffset: 1000
     animation: dash 2s linear forwards
-
-
-.spinner
-  display: inline-block
-  background-image: url("../images/spinner.gif")
-  background-size: cover
-  vertical-align: bottom
-  float: right
-  &_small
-    width: $small-spinner-size
-    height: $small-spinner-size
 
 @keyframes dash
   to
