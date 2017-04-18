@@ -12,21 +12,21 @@ const TEXT_WIN = 'You win';
 const TEXT_LOST = 'You lost';
 const TEXT_DRAW = 'Draw';
 
-function updateCell(array, action, newValue) {
+function updateCell(array, action) {
   return array.map( (value, index) => {
     if(index !== action.index) {
       return value;
     }
-    return newValue;    
+    return action.sign;    
   });
 }
 
-function opponent(player) {
-  if(player == 2)
-    return 1;
-  else 
-    return 2;
-}
+// function opponent(player) {
+//   if(player == 2)
+//     return 1;
+//   else 
+//     return 2;
+// }
 
 
 const initialState = { 
@@ -49,7 +49,7 @@ const game = (state = initialState, action) => {
     case MOVE_IS_MADE:
       return {
         ...state,
-        field: updateCell(state.field, action, state.canMove ? state.player : opponent(state.player)),
+        field: updateCell(state.field, action),
         canMove: !state.canMove,
         info: !state.canMove ? TEXT_CAN_MOVE : TEXT_CAN_NOT_MOVE,
       };

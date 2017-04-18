@@ -33,6 +33,13 @@ $small-spinner-size: 28px
   height: 95px
   padding: 8px
   border: 1px solid #000
+  path
+    fill: none
+    stroke: #000
+    stroke-width: 4
+    stroke-dasharray: 1000
+    stroke-dashoffset: 1000
+    animation: dash 2s linear forwards
 
 .spinner
   display: inline-block
@@ -43,3 +50,7 @@ $small-spinner-size: 28px
   &_small
     width: $small-spinner-size
     height: $small-spinner-size
+
+@keyframes dash
+  to
+    stroke-dashoffset: 0

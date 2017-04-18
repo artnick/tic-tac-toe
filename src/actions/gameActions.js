@@ -21,10 +21,11 @@ const connectToGameSucces = ({ field, player, canMove }) => {
   };
 };
 
-const moveIsMade = (index) => {
+const moveIsMade = (index, sign) => {
   return {
     type: MOVE_IS_MADE,
     index,
+    sign,
   };
 };
 
@@ -65,8 +66,8 @@ export function connectToGame(gameId) {
       console.log('Failed to connect to game:', msg);
     });
 
-    socket.on('moved', function(cell) {
-      dispatch(moveIsMade(cell));
+    socket.on('moved', function(cell, sign) {
+      dispatch(moveIsMade(cell, sign));
     });
 
     socket.on('game over', function(result) {
@@ -83,7 +84,6 @@ export function connectToGame(gameId) {
 export function move(cell) {
   return (dispatch, getState, socket) => {
     if(getState().game.canMove) {
-      dispatch(moveIsMade(cell));
       socket.emit('move', cell);
     }
   };
