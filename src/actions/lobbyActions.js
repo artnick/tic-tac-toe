@@ -26,10 +26,12 @@ export function createGame() {
     dispatch(createGameRequest());
 
     socket.emit('create game');
+    
     socket.on('game created', function(gameId) {
       dispatch(createGameSucces(gameId));
     });
 
+    //go to game screen when second player copen sent link
     socket.on('second player connected', function() {
       dispatch(joinGame());
     });

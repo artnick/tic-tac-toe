@@ -4,7 +4,7 @@ import Lobby from '../components/Lobby';
 import { createGame } from '../actions/lobbyActions';
 import PropTypes from 'prop-types';
 
-const URL = 'http://localhost:8080/game/';
+const ROUTE = 'game/';
 
 class LobbyContainer extends React.Component {
   constructor(props) {
@@ -17,11 +17,11 @@ class LobbyContainer extends React.Component {
 
   componentDidUpdate() {
     if(this.props.canJoinGame)
-      this.props.history.push('/game/'+ this.props.gameId);
+      this.props.history.push(ROUTE + this.props.gameId);
   }
 
   render() {
-    return <Lobby link={URL + this.props.gameId} />;
+    return <Lobby link={window.location.href + ROUTE + this.props.gameId} />;
   }
 }
 

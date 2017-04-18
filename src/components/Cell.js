@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { X, O, EMPTY } from '../constants/gameConstants';
 
 const Cell = ({ type, onCLick }) => {
   switch (type) {
-    case 2:
+    case X:
       return (
         <div className='cell'>
           <svg className="cross" role="img" viewBox="0 0 100 100">
@@ -12,7 +13,7 @@ const Cell = ({ type, onCLick }) => {
           </svg>
         </div>
       );
-    case 1:
+    case O:
       return (
         <div className='cell'>
           <svg className="circle" role="img" viewBox="0 0 100 100" >
@@ -20,7 +21,7 @@ const Cell = ({ type, onCLick }) => {
           </svg>
         </div>
       );
-    case 0:
+    case EMPTY:
     default:
       return <div className='cell' onClick={onCLick}></div>;
   }

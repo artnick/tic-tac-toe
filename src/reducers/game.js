@@ -8,6 +8,7 @@ import {
   YOUR_LOST,
   DRAW,
 } from '../actions/gameActions';
+import { X, EMPTY } from '../constants/gameConstants';
 
 const TEXT_CAN_MOVE = 'Your move';
 const TEXT_CAN_NOT_MOVE = 'Your opponent move';
@@ -39,8 +40,8 @@ const game = (state = initialState, action) => {
         ...state,
         field: action.field,
         player: action.player,
-        canMove: action.player == 2,
-        info: action.player == 2 ? TEXT_CAN_MOVE : TEXT_CAN_NOT_MOVE,
+        canMove: action.player == X,
+        info: action.player == X ? TEXT_CAN_MOVE : TEXT_CAN_NOT_MOVE,
       };
     case CONNECT_GAME_FAILURE:
       return {
@@ -50,9 +51,10 @@ const game = (state = initialState, action) => {
     case RESTART_GAME:
       return {
         ...state,
-        field: new Array(9).fill(0),
-        canMove: state.player == 2,
-        info: state.player == 2 ? TEXT_CAN_MOVE : TEXT_CAN_NOT_MOVE,
+        field: new Array(9).fill(EMPTY),
+        canMove: state.player == X,
+        info: state.player == X ? TEXT_CAN_MOVE : TEXT_CAN_NOT_MOVE,
+        line: -1,
       };
     case OPPONENT_DISCONNECTED:
       return {

@@ -10,7 +10,9 @@ class GameContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.props.connect(this.props.match.params.id);
+    //try to connect if not connected yet (when connected field is not empty)
+    if(this.props.field.length == 0)
+      this.props.connect(this.props.match.params.id);
   }
 
   render() {
@@ -21,6 +23,7 @@ class GameContainer extends React.Component {
 GameContainer.propTypes = {
   connect: PropTypes.func,
   match: PropTypes.object,
+  field: PropTypes.array,
 };
 
 const mapStateToProps = (state) => {

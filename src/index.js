@@ -7,7 +7,7 @@ import configureStore from './configureStore';
 import App from './components/App';
 import './styles/main.sass';
 
-const socket = io('http://localhost:3000');
+const socket = io();
 
 const store = configureStore(socket);
 

@@ -87,7 +87,7 @@ export function connectToGame(gameId) {
     socket.on('moved', function(cell, sign) {
       dispatch(moved(cell, sign));
     });
-
+    
     socket.on('opponent disconnected', function() {
       dispatch(opponentDisconnected());
     });
