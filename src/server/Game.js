@@ -1,6 +1,9 @@
-import { X, O, EMPTY, DRAW } from '../constants/gameConstants';
+const X = 2;
+const O = 1;
+const EMPTY = 0;
+const DRAW = -1;
 
-export default class Game {
+module.exports = class Game {
   constructor(userId) {
     this.field = new Array(9).fill(EMPTY);
     this.players = new Map([[userId, X]]);
@@ -25,7 +28,7 @@ export default class Game {
     if(this.players.size < 2) {
       this.players.set(userId, O);
       return true;
-    } else if(this.players.has(userId)) {//this check need for connect
+    } else if(this.players.has(userId)) {//this check need for connect user who create game
       return true;
     } else {
       return false;
