@@ -2,8 +2,7 @@
 
 ### Demo
 
-[View demo][demo-page]
-[demo-page]: http://tttg.herokuapp.com/
+[View demo](http://tttg.herokuapp.com/)
 
 ### Running application
 
